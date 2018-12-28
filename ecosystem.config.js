@@ -11,6 +11,7 @@ module.exports = {
     ],
     deploy: {
         production: {
+            key: "../iris.pem",
             user: "node",
             host: "52.91.163.214",
             ref: "origin/master",
