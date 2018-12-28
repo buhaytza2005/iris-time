@@ -15,13 +15,16 @@ server.on("listening", function() {
         
         //this is for online
         // request.put(`https://serene-brook-98744.herokuapp.com/service/time/${server.address().port}`, (err, res) => {
-        request.put(`http://localhost:5000/service/time/${server.address().port}`, (err) => {
-            if (err) {
-                log.debug(err);
-                log.info("There was an error connectiong to Iris");
-                return;
-            }
-        });
+        request.put(`http://localhost:5000/service/time/${server.address().port}`)
+            .set("X-IRIS-SERVICE-TOKEN", config.serviceAccessToken)
+            .set("X-IRIS-API-TOKEN", config.irisApiToken)
+            .end((err) => {
+                if (err) {
+                    log.debug(err);
+                    log.info("There was an error connectiong to Iris");
+                    return;
+                }
+            });
     };
     announce();
     setInterval(announce, 15*1000);
