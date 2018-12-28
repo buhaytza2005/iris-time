@@ -11,11 +11,11 @@ server.listen(process.env.PORT || 3010);
 server.on("listening", function() {
     log.info(`IRIS-Time is listening on ${server.address().port} in ${service.get("env")} mode.`);
 
+    const irisUrl = process.env.IRIS_URL ? process.env.IRIS_URL : "http://localhost:5000/";
     const announce = () => {
         
-        //this is for online
-        // request.put(`https://serene-brook-98744.herokuapp.com/service/time/${server.address().port}`, (err, res) => {
-        request.put(`http://localhost:5000/service/time/${server.address().port}`)
+        
+        request.put(`${irisUrl}/${server.address().port}`)
             .set("X-IRIS-SERVICE-TOKEN", config.serviceAccessToken)
             .set("X-IRIS-API-TOKEN", config.irisApiToken)
             .end((err) => {
