@@ -5,14 +5,14 @@ module.exports = {
             script: "bin/run.js",
             env_production: {
                 NODE_ENV: "production",
-                IRIS_URL: "http://<IP_OF_IRIS_MAIN>:3000"
+                IRIS_URL: "http://3.82.138.13:5000"
             }
         }
     ],
     deploy: {
         production: {
             user: "node",
-            host: "172-31-84-97",
+            host: "52.91.163.214",
             ref: "origin/master",
             repo: "https://github.com/buhaytza2005/iris-time.git",
             path: "/srv/production",
